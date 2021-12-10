@@ -5,7 +5,7 @@ from msrest.authentication import CognitiveServicesCredentials
 
 if __name__ == '__main__':
     endpoint = "https://ocr-form.cognitiveservices.azure.com/"
-    credential = AzureKeyCredential("8c82ef6cd60c4e108d38312605d4b3a5")
+    credential = AzureKeyCredential("")
 
     form_recognizer_client = FormRecognizerClient(endpoint, credential)
 
