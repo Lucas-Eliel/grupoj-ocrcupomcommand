@@ -1,23 +1,43 @@
 from azure.ai.formrecognizer import FormRecognizerClient
 from azure.core.credentials import AzureKeyCredential
 
+from src.model.cupom import Cupom
+from src.repository.ocr_cupom_repository import OcrCupomRepository
+from src.service.classifica_cupom_service import ClassificaCupomService
+from src.utils.validation_request import ValidationRequest
+
+
+def get_client_form_recognizer():
+    endpoint = "https://ocr-form.cognitiveservices.azure.com/"
+    credential = AzureKeyCredential("")
+    return FormRecognizerClient(endpoint, credential)
+
 
 class OcrCupomService:
 
+    def __init__(self, event):
+        self.event = event
+        self.repository = OcrCupomRepository()
+        self.validation = ValidationRequest(event)
+        self.client_form_recognizer = get_client_form_recognizer()
+        self.service = ClassificaCupomService
+
     def process_cupom(self):
-        endpoint = "https://ocr-form.cognitiveservices.azure.com/"
-        credential = AzureKeyCredential("")
+        self.validation.validate_body()
 
-        form_recognizer_client = FormRecognizerClient(endpoint, credential)
+        body = self.event['body']
+        cupom_image = body['cupom']
 
-        image = open("/Users/lucaseliel/Desktop/cupom-fiscal.jpeg", "rb")
+        report = self.client_form_recognizer.begin_recognize_receipts(cupom_image)
+        result = report.result()
+        dados_recognizer = result[0]
 
-        report = form_recognizer_client.begin_recognize_receipts(image)
+        cupom = Cupom(dados_recognizer)
 
-        dados = report.result()
+        self.service.classificar(cupom)
 
-        recibo = dados[0]
+        self.repository.save(cupom)
 
-        print(recibo.fields)
-
-
+        return {
+            "id": cupom.id
+        }

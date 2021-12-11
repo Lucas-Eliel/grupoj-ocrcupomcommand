@@ -10,7 +10,7 @@ class OcrCupomCommandController:
 
     def __init__(self, event):
         self.event = event
-        self.service = OcrCupomService()
+        self.service = OcrCupomService(event)
 
     def invoke(self):
         try:
@@ -18,9 +18,12 @@ class OcrCupomCommandController:
                 if self.event['httpMethod'] == 'POST':
                     return self.service.process_cupom()
                 raise ValidationRequestException("Método HTTP inválido")
+
             raise ValidationRequestException("Endpoint inválido")
+
         except ValidationRequestException as error:
             return ResponseUtils.error(HTTPStatus.BAD_REQUEST, error.message)
+
         except DynamodbIntegrationException as error:
             return ResponseUtils.error(HTTPStatus.SERVICE_UNAVAILABLE, error.message)
 
