@@ -8,12 +8,12 @@ from src.model.produtos import Produtos
 class Cupom:
 
     def __init__(self, dados_recognizer):
-        self.id = uuid.uuid4()
+        self.id = str(uuid.uuid4())
         self.status = ""
         self.ranking = ""
         self.estabelecimento = ""
         self.consumidor = ""
-        self.produtos= ""
+        self.produtos = ""
         self.valor_total = ""
         self.dados_recognizer = dados_recognizer
 
@@ -29,7 +29,7 @@ class Cupom:
             "id": self.id,
             "status": self.status,
             "ranking": self.ranking,
-            "estabeleciomento": self.estabelecimento.to_dict(),
+            "estabelecimento": self.estabelecimento.to_dict(),
             "consumidor": self.consumidor.to_dict(),
             "produtos": self.produtos.to_dict(),
             "valor_total": self.valor_total
