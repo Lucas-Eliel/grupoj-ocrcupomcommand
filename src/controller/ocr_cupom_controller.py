@@ -16,7 +16,8 @@ class OcrCupomCommandController:
         try:
             if self.event['resource'] == '/processamento-ocr-cupom':
                 if self.event['httpMethod'] == 'POST':
-                    return self.service.process_cupom()
+                    result = self.service.process_cupom()
+                    return ResponseUtils.sucess(HTTPStatus.CREATED, result)
                 raise ValidationRequestException("Método HTTP inválido")
 
             raise ValidationRequestException("Endpoint inválido")
@@ -27,5 +28,7 @@ class OcrCupomCommandController:
         except DynamodbIntegrationException as error:
             return ResponseUtils.error(HTTPStatus.SERVICE_UNAVAILABLE, error.message)
 
+        except Exception as error:
+            return ResponseUtils.error(HTTPStatus.INTERNAL_SERVER_ERROR, error.message)
 
 
