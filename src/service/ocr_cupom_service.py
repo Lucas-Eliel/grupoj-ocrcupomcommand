@@ -43,5 +43,5 @@ class OcrCupomService:
         self.repository.save(cupom_entity)
 
         return {
-            "id": cupom.id
+            "id_processo": cupom['id_processo']
         }

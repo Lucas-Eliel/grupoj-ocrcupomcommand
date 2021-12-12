@@ -7,7 +7,7 @@ class ClassificaCupomService:
         self.cupom = cupom
 
     def classificar(self):
-        self.cupom['status'] = self.definir_status()
+        self.cupom['status_cupom'] = self.definir_status()
         self.cupom['ranking'] = self.definir_ranking()
 
     def definir_ranking(self):

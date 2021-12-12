@@ -8,8 +8,8 @@ from src.model.produtos import Produtos
 class Cupom:
 
     def __init__(self, dados_recognizer):
-        self.id = str(uuid.uuid4())
-        self.status = ""
+        self.id_processo = str(uuid.uuid4())
+        self.status_cupom = ""
         self.ranking = ""
         self.estabelecimento = ""
         self.consumidor = ""
@@ -26,8 +26,8 @@ class Cupom:
             self.valor_total = self.dados_recognizer.fields.get("Total").value
 
         return {
-            "id": self.id,
-            "status": self.status,
+            "id_processo": self.id_processo,
+            "status_cupom": self.status_cupom,
             "ranking": self.ranking,
             "estabelecimento": self.estabelecimento.to_dict(),
             "consumidor": self.consumidor.to_dict(),
