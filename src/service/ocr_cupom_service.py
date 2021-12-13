@@ -1,9 +1,9 @@
 import json
+
 from decimal import Decimal
 
 from azure.ai.formrecognizer import FormRecognizerClient
 from azure.core.credentials import AzureKeyCredential
-
 from src.model.cupom import Cupom
 from src.repository.ocr_cupom_repository import OcrCupomRepository
 from src.service.classifica_cupom_service import ClassificaCupomService
