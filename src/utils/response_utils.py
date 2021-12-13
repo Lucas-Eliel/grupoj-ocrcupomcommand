@@ -1,22 +1,17 @@
-import json
-
-
 class ResponseUtils:
 
     @staticmethod
     def sucess(status, payload):
-
         return {
             "headers": {"Content-Type": "application/json"},
             "statusCode": status,
-            "body": json.dumps({
+            "body": {
                 "data": payload
-            })
+            }
         }
 
     @staticmethod
     def error(status, message):
-
         payload = {
             "codigo": status,
             "mensagem": message
@@ -26,8 +21,8 @@ class ResponseUtils:
             "headers": {"Content-Type": "application/json"},
             "statusCode": status,
             "body": {
-                "testes": json.dumps({
+                "testes": {
                     "data": payload
-                })
+                }
             }
         }
