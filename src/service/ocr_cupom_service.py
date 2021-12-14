@@ -1,12 +1,14 @@
 import json
-
+import base64
 from decimal import Decimal
+from http import HTTPStatus
 
 from azure.ai.formrecognizer import FormRecognizerClient
 from azure.core.credentials import AzureKeyCredential
 from src.model.cupom import Cupom
 from src.repository.ocr_cupom_repository import OcrCupomRepository
 from src.service.classifica_cupom_service import ClassificaCupomService
+from src.utils.response_utils import ResponseUtils
 from src.utils.validation_request import ValidationRequest
 
 
@@ -25,12 +27,15 @@ class OcrCupomService:
         self.client_form_recognizer = get_client_form_recognizer()
 
     def process_cupom(self):
-        self.validation.validate_body()
+        body = json.loads(self.event['body'])
 
-        body = self.event['body']
+        self.validation.validate_body(body)
+
         cupom_image = body['cupom']
+        encode_image = cupom_image.encode("ascii")
+        bytes_image = base64.decodebytes(encode_image)
 
-        report = self.client_form_recognizer.begin_recognize_receipts(cupom_image)
+        report = self.client_form_recognizer.begin_recognize_receipts(bytes_image)
         result = report.result()
         dados_recognizer = result[0]
 
