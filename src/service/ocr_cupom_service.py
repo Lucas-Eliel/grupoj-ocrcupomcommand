@@ -1,14 +1,12 @@
 import json
 import base64
 from decimal import Decimal
-from http import HTTPStatus
 
 from azure.ai.formrecognizer import FormRecognizerClient
 from azure.core.credentials import AzureKeyCredential
 from src.model.cupom import Cupom
 from src.repository.ocr_cupom_repository import OcrCupomRepository
 from src.service.classifica_cupom_service import ClassificaCupomService
-from src.utils.response_utils import ResponseUtils
 from src.utils.validation_request import ValidationRequest
 
 
