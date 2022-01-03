@@ -11,8 +11,8 @@ from src.utils.validation_request import ValidationRequest
 
 
 def get_client_form_recognizer():
-    endpoint = "https://ocr-form.cognitiveservices.azure.com/"
-    credential = AzureKeyCredential("8c82ef6cd60c4e108d38312605d4b3a5")
+    endpoint = "https://ocr-cupom-form.cognitiveservices.azure.com/"
+    credential = AzureKeyCredential("af4bd5a411514f3cbd6c46c62841dba6")
     return FormRecognizerClient(endpoint, credential)
 
 
