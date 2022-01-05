@@ -10,4 +10,4 @@ class ValidationRequest:
         if not 'cupom' in body:
             raise ValidationRequestException("Necessário informar o cupom no body da request")
         if not 'cnpj' in body:
-            raise ValidationRequestException("Necessário informar o cpf_cnpj no body da request")
+            raise ValidationRequestException("Necessário informar o cnpj no body da request")
