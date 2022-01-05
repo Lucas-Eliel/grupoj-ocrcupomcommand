@@ -8,10 +8,10 @@ class Estabelecimento:
 
     def to_dict(self):
 
-        if self.dados_recognizer.fields.get("MerchantAddress").value is not None:
+        if self.dados_recognizer.fields.get("MerchantAddress") is not None:
             self.endereco = self.dados_recognizer.fields.get("MerchantAddress").value
 
-        if self.dados_recognizer.fields.get("MerchantName").value is not None:
+        if self.dados_recognizer.fields.get("MerchantName") is not None:
             self.nome = self.dados_recognizer.fields.get("MerchantName").value
 
         return {

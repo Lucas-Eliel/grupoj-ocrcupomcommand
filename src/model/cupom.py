@@ -22,7 +22,7 @@ class Cupom:
         self.produtos = Produtos(dados_recognizer)
 
     def to_dict(self):
-        if self.dados_recognizer.fields.get("Total").value is not None:
+        if self.dados_recognizer.fields.get("Total") is not None:
             self.valor_total = self.dados_recognizer.fields.get("Total").value
 
         return {
