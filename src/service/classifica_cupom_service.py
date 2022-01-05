@@ -14,7 +14,7 @@ class ClassificaCupomService:
         ranking = 100
 
         #Estabelecimento vale 15%
-        if self.cupom['estabelecimento']['cpf_cnpj'] == "":
+        if self.cupom['estabelecimento']['cnpj'] == "":
             ranking -= 5
         if self.cupom['estabelecimento']['nome'] == "":
             ranking -= 5
@@ -22,7 +22,7 @@ class ClassificaCupomService:
             ranking -= 5
 
         # Consumidor vale 10%
-        if self.cupom['consumidor']['cpf_cnpj'] == "":
+        if self.cupom['consumidor']['cpf'] == "":
             ranking -= 5
         if self.cupom['consumidor']['nome'] == "":
             ranking -= 5
@@ -43,7 +43,7 @@ class ClassificaCupomService:
         return ranking
 
     def definir_status(self):
-        if self.is_total_igual_soma_itens() and self.is_estabelecimento_possui_cpfcnpj() and self.is_produto_possui_descricao():
+        if self.is_total_igual_soma_itens() and self.is_estabelecimento_possui_cnpj() and self.is_produto_possui_descricao():
             return Status.VALIDO.value
         return Status.INVALIDO.value
 
@@ -66,9 +66,9 @@ class ClassificaCupomService:
 
         return True
 
-    # 2 - ler cpfcnpj -> estabelecimento 15%
-    def is_estabelecimento_possui_cpfcnpj(self):
-        if self.cupom['estabelecimento']['cpf_cnpj'] == "":
+    # 2 - ler cnpj -> estabelecimento 15%
+    def is_estabelecimento_possui_cnpj(self):
+        if self.cupom['estabelecimento']['cnpj'] == "":
             return False
         return True
 

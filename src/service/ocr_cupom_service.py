@@ -33,6 +33,8 @@ class OcrCupomService:
         self.validation.validate_body(body)
 
         cupom_image = body['cupom']
+        cnpj = body['cnpj']
+
         encode_image = cupom_image.encode("ascii")
         bytes_image = base64.decodebytes(encode_image)
 
@@ -40,7 +42,7 @@ class OcrCupomService:
         result = report.result()
         dados_recognizer = result[0]
 
-        cupom = Cupom(dados_recognizer).to_dict()
+        cupom = Cupom(dados_recognizer, cnpj).to_dict()
 
         ClassificaCupomService(cupom).classificar()
 

@@ -7,7 +7,7 @@ from src.model.produtos import Produtos
 
 class Cupom:
 
-    def __init__(self, dados_recognizer):
+    def __init__(self, dados_recognizer, cnpj):
         self.id_processo = str(uuid.uuid4())
         self.status_cupom = ""
         self.ranking = ""
@@ -17,7 +17,7 @@ class Cupom:
         self.valor_total = ""
         self.dados_recognizer = dados_recognizer
 
-        self.estabelecimento = Estabelecimento(dados_recognizer)
+        self.estabelecimento = Estabelecimento(dados_recognizer, cnpj)
         self.consumidor = Consumidor(dados_recognizer)
         self.produtos = Produtos(dados_recognizer)
 

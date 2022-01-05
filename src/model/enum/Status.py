@@ -2,5 +2,5 @@ from enum import Enum
 
 
 class Status(Enum):
-    VALIDO = "VALIDO",
+    VALIDO = "VALIDO"
     INVALIDO = "INVALIDO"
