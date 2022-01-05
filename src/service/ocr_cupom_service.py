@@ -25,7 +25,10 @@ class OcrCupomService:
         self.client_form_recognizer = get_client_form_recognizer()
 
     def process_cupom(self):
-        body = json.loads(self.event['body'])
+        if(type(self.event['body']) == dict):
+            body = self.event['body']
+        else:
+            body = json.loads(self.event['body'])
 
         self.validation.validate_body(body)
 
