@@ -1,7 +1,7 @@
 import redis
 from datetime import timedelta
 
-IS_ATIVO_AMBIENTE_LOCAL=True
+IS_ATIVO_AMBIENTE_LOCAL=False
 
 def get_connection_redis():
     if IS_ATIVO_AMBIENTE_LOCAL:

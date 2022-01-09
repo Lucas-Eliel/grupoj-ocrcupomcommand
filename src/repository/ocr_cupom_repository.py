@@ -2,7 +2,7 @@ import boto3
 
 from src.exception.dynamodb_integration_exception import DynamodbIntegrationException
 
-IS_ATIVO_AMBIENTE_LOCAL=True
+IS_ATIVO_AMBIENTE_LOCAL=False
 
 
 def get_connection_dynamodb():
