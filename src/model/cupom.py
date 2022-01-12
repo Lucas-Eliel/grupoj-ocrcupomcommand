@@ -23,7 +23,7 @@ class Cupom:
 
     def to_dict(self):
         if self.dados_recognizer.fields.get("Total") is not None:
-            self.valor_total = self.dados_recognizer.fields.get("Total").value
+            self.valor_total = self.dados_recognizer.fields.get("Total").value / 100
 
         return {
             "id_processo": self.id_processo,

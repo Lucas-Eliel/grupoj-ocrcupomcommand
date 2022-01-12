@@ -19,7 +19,7 @@ class Produtos:
                 if item.value.get("Name") is not None:
                     self.nome = item.value.get("Name").value
                 if item.value.get("Price") is not None:
-                    self.valor = item.value.get("Price").value
+                    self.valor = item.value.get("Price").value / 100
 
                 produto = {
                     "nome": self.nome,
