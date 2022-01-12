@@ -53,7 +53,7 @@ class ClassificaCupomService:
             return False
 
         for produto in self.cupom['produtos']:
-            if produto['valor'] == "":
+            if produto['valor'] == "" or produto['valor'] is None:
                 return False
 
         soma_itens = 0
